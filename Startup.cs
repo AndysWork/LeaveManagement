@@ -38,7 +38,7 @@ namespace LeaveManagement
             // References for interfaces and the child classes
             services.AddScoped<ILeaveTypeRepository, LeaveTypeRepository>();
             services.AddScoped<ILeaveAllocationRepository, LeaveAllocationRepository>();
-            services.AddScoped<ILeaveHistoryRepository, LeaveHistoryRepository>();
+            services.AddScoped<ILeaveRequestRepository, LeaveRequestRepository>();
 
             services.AddAutoMapper(typeof(Maps));
             // for confirming email account -> (options => options.SignIn.RequireConfirmedAccount = true)
