@@ -35,11 +35,7 @@ namespace LeaveManagement
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
-            // References for interfaces and the child classes
-            services.AddScoped<ILeaveTypeRepository, LeaveTypeRepository>();
-            services.AddScoped<ILeaveAllocationRepository, LeaveAllocationRepository>();
-            services.AddScoped<ILeaveRequestRepository, LeaveRequestRepository>();
-            
+            // References for interfaces and the child classes          
             services.AddTransient<IUnitOfWork, UnitOfWork>();
 
             services.AddAutoMapper(typeof(Maps));

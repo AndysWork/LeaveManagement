@@ -15,50 +15,39 @@ namespace LeaveManagement.Controllers
     [Authorize(Roles = "Administrator")]
     public class LeaveTypesController : Controller
     {
-        private readonly ILeaveTypeRepository _repo;
-        private readonly IMapper _mapper;
-
         private readonly IUnitOfWork _unitOfWork;
-
-        public LeaveTypesController(ILeaveTypeRepository repo, IMapper mapper, IUnitOfWork unitOfWork)
+        private readonly IMapper _mapper;
+        public LeaveTypesController(IUnitOfWork unitOfWork, IMapper mapper)
         {
-            _repo = repo;
-            _mapper = mapper;
             _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
-        // GET: LeaveTypesController
         public async Task<ActionResult> Index()
         {
-            //var leavetypes = await _repo.FindAll();
-            var leavetypes = await _unitOfWork.LeaveTypes.FindAll();
-            var model = _mapper.Map<List<LeaveType>, List<LeaveTypeVM>>(leavetypes.ToList());
-            
+            var leaveTypes = await _unitOfWork.LeaveTypes.FindAll();
+            var model = _mapper.Map<List<LeaveType>, List<LeaveTypeVM>>(leaveTypes.ToList());
+
             return View(model);
         }
 
-        // GET: LeaveTypesController/Details/5
         public async Task<ActionResult> Details(int id)
         {
-            //var isExist = await _repo.isExists(id);
             var isExist = await _unitOfWork.LeaveTypes.isExists(q => q.Id == id);
             if (!isExist)
             {
                 return NotFound();
             }
-            //var leaveType = await _repo.FindById(id);
             var leaveType = await _unitOfWork.LeaveTypes.Find(q => q.Id == id);
             var model = _mapper.Map<LeaveTypeVM>(leaveType);
-            
+
             return View(model);
         }
 
-        // GET: LeaveTypesController/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: LeaveTypesController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(LeaveTypeVM model)
@@ -72,7 +61,7 @@ namespace LeaveManagement.Controllers
 
                 var leaveType = _mapper.Map<LeaveType>(model);
                 leaveType.DateCreated = DateTime.Now;
-                //var isSuccess = await _repo.Create(leaveType);
+
                 await _unitOfWork.LeaveTypes.Create(leaveType);
                 await _unitOfWork.Save();
 
@@ -85,23 +74,20 @@ namespace LeaveManagement.Controllers
             }
         }
 
-        // GET: LeaveTypesController/Edit/5
         public async Task<ActionResult> Edit(int id)
         {
-            //var isExist = await _repo.isExists(id);
             var isExist = await _unitOfWork.LeaveTypes.isExists(q => q.Id == id);
             if (!isExist)
             {
                 return NotFound();
             }
-            //var leaveType = await _repo.FindById(id);
+
             var leaveType = await _unitOfWork.LeaveTypes.Find(q => q.Id == id);
             var model = _mapper.Map<LeaveTypeVM>(leaveType);
-            
+
             return View(model);
         }
 
-        // POST: LeaveTypesController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(LeaveTypeVM model)
@@ -126,30 +112,25 @@ namespace LeaveManagement.Controllers
             }
         }
 
-        // GET: LeaveTypesController/Delete/5
         public async Task<ActionResult> Delete(int id)
         {
-            //var leaveType = await _repo.FindById(id);
             var leaveType = await _unitOfWork.LeaveTypes.Find(expression: q => q.Id == id);
             if (leaveType == null)
             {
                 return NotFound();
             }
-            //var isSuccess = await _repo.Delete(leaveType);
             _unitOfWork.LeaveTypes.Delete(leaveType);
             await _unitOfWork.Save();
 
             return RedirectToAction(nameof(Index));
         }
 
-        // POST: LeaveTypesController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Delete(int id, LeaveTypeVM model)
         {
             try
             {
-                //var leaveType = await _repo.FindById(id);
                 var leaveType = await _unitOfWork.LeaveTypes.Find(expression: q => q.Id == id);
                 if (leaveType == null)
                 {
