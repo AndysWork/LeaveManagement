@@ -18,7 +18,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.DefaultDays)
             </th>
-            <th>Actions</th>
+            <th class="text-center">Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -31,10 +31,26 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.DefaultDays)
                 </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning"><i class="fa fa-edit"></i></a>
-                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info"><i class="fa fa-info"></i></a>
-                    <a asp-action="Delete" asp-route-id="@item.Id" onclick="return confirm('Are you sure that you wants to DELETE the record?')" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                <td class="text-center">
+                    <div class="row">
+                        <div class="col-3">
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">
+                                <i class="fa fa-edit" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                        <div class="col-3">
+                            <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info">
+                                <i class="fa fa-info" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                        <div class="col-3">
+                            <form asp-action="Delete" asp-route-id="@item.Id" method="post">
+                                <button type="submit" onclick="return confirm('Are you sure that you wants to DELETE the record?')" class="btn btn-danger">
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
                 </td>
             </tr>
         }
