@@ -975,3 +975,6 @@ F:\Github_Version_Learning_Projects\LeaveManagement\obj\Debug\net5.0\Razor\Views
 F:\Github_Version_Learning_Projects\LeaveManagement\obj\Debug\net5.0\Razor\Views\LeaveRequest\Details.cshtml.g.cs
 F:\Github_Version_Learning_Projects\LeaveManagement\obj\Debug\net5.0\Razor\Views\LeaveRequest\MyLeave.cshtml.g.cs
 F:\Github_Version_Learning_Projects\LeaveManagement\obj\Debug\net5.0\Razor\Views\Shared\_AdminLTE.cshtml.g.cs
+F:\Github_Version_Learning_Projects\LeaveManagement\bin\Debug\net5.0\MailKit.dll
+F:\Github_Version_Learning_Projects\LeaveManagement\bin\Debug\net5.0\MimeKit.dll
+F:\Github_Version_Learning_Projects\LeaveManagement\bin\Debug\net5.0\BouncyCastle.Crypto.dll

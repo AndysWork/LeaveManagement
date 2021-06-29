@@ -93,7 +93,7 @@ namespace LeaveManagement.Areas.Identity.Pages.Account
                     _userManager.AddToRoleAsync(user, "Employee").Wait();
 
                     _logger.LogInformation("User created a new account with password.");
-                    //Confirm Email Feature on registration
+                    //Confirm Email Feature on registration - Unblock once smtp is configured
                     //var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     //code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
                     //var callbackUrl = Url.Page(
@@ -111,8 +111,8 @@ namespace LeaveManagement.Areas.Identity.Pages.Account
                     //}
                     //else
                     //{
-                    await _signInManager.SignInAsync(user, isPersistent: false);
-                    return LocalRedirect(returnUrl);
+                        await _signInManager.SignInAsync(user, isPersistent: false);
+                        return LocalRedirect(returnUrl);
                     //}
                 }
                 foreach (var error in result.Errors)

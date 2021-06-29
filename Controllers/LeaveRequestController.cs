@@ -2,6 +2,7 @@
 using LeaveManagement.Contracts;
 using LeaveManagement.Data;
 using LeaveManagement.Models;
+using LeaveManagement.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -21,12 +22,14 @@ namespace LeaveManagement.Controllers
         private readonly IUnitOfWork _unitOfWork;
         private readonly UserManager<Employee> _userManager;
         private readonly IMapper _mapper;
+        private readonly IEmailSender _emailSender;
 
-        public LeaveRequestController(IUnitOfWork unitOfWork, IMapper mapper, UserManager<Employee> userManager)
+        public LeaveRequestController(IUnitOfWork unitOfWork, IMapper mapper, UserManager<Employee> userManager, IEmailSender emailSender)
         {
             _unitOfWork = unitOfWork;
             _userManager = userManager;
             _mapper = mapper;
+            _emailSender = emailSender;
         }
 
         [Authorize(Roles = "Administrator")]
@@ -126,6 +129,10 @@ namespace LeaveManagement.Controllers
 
                 await _unitOfWork.LeaveRequests.Create(leaveRequest);
                 await _unitOfWork.Save();
+
+                //Send Email to SuperVisor
+                //await _emailSender.SendEmailAsync("admin@localhost.com", "Leave Request",
+                //    $"Please review this leave request <a href='urlofapp/{leaveRequest.Id}'>Click Here</a>");
 
                 return RedirectToAction(nameof(MyLeave));
             }

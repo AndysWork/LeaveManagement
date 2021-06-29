@@ -3,6 +3,7 @@ using LeaveManagement.Contracts;
 using LeaveManagement.Data;
 using LeaveManagement.Mappings;
 using LeaveManagement.Repository;
+using LeaveManagement.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -37,6 +38,10 @@ namespace LeaveManagement
 
             // References for interfaces and the child classes          
             services.AddTransient<IUnitOfWork, UnitOfWork>();
+
+            //Email Settings Section
+            services.Configure<EmailSettings>(Configuration.GetSection("EmailSettings"));
+            services.AddSingleton<IEmailSender, EmailSender>();
 
             services.AddAutoMapper(typeof(Maps));
             // for confirming email account -> (options => options.SignIn.RequireConfirmedAccount = true)
