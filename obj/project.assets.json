@@ -7907,7 +7907,8 @@
       "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation >= 5.0.7",
       "Microsoft.EntityFrameworkCore.SqlServer >= 5.0.6",
       "Microsoft.EntityFrameworkCore.Tools >= 5.0.6",
-      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 5.0.2"
+      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 5.0.2",
+      "System.Composition >= 1.0.31"
     ]
   },
   "packageFolders": {
@@ -7995,6 +7996,10 @@
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
             "target": "Package",
             "version": "[5.0.2, )"
+          },
+          "System.Composition": {
+            "target": "Package",
+            "version": "[1.0.31, )"
           }
         },
         "imports": [

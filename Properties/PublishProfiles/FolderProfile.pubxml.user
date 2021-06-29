@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>F:\Github_Version_Learning_Projects\LeaveManagement\bin\Release\net5.0\publish\</_PublishTargetUrl>
+    <History>True|2021-06-29T19:30:58.8484557Z;True|2021-06-30T00:52:59.3996442+05:30;True|2021-06-30T00:38:42.4300360+05:30;True|2021-06-30T00:37:50.0703917+05:30;False|2021-06-30T00:37:06.5875265+05:30;True|2021-06-30T00:24:58.9482106+05:30;True|2021-06-29T23:35:07.3446805+05:30;True|2021-06-29T22:47:09.8481773+05:30;</History>
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="DefaultConnection">
+      <Value>Server=LAPTOP-J8NBF3GI\SQLEXPRESS%3bInitial Catalog=leave_management%3bTrusted_Connection=True%3bMultipleActiveResultSets=true</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+  <ItemGroup>
+    <EFMigrations Include="LeaveManagement.Data.ApplicationDbContext">
+      <Value>Server=LAPTOP-J8NBF3GI\SQLEXPRESS%3bInitial Catalog=leave_management%3bTrusted_Connection=True%3bMultipleActiveResultSets=true</Value>
+    </EFMigrations>
+  </ItemGroup>
+</Project>
