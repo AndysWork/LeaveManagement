@@ -39,6 +39,8 @@ namespace LeaveManagement
             services.AddScoped<ILeaveTypeRepository, LeaveTypeRepository>();
             services.AddScoped<ILeaveAllocationRepository, LeaveAllocationRepository>();
             services.AddScoped<ILeaveRequestRepository, LeaveRequestRepository>();
+            
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
 
             services.AddAutoMapper(typeof(Maps));
             // for confirming email account -> (options => options.SignIn.RequireConfirmedAccount = true)

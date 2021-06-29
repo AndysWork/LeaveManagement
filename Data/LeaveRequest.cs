@@ -26,5 +26,8 @@ namespace LeaveManagement.Data
         public Employee ApprovedBy { get; set; }
         public string ApprovedById { get; set; }
         public bool Cancelled { get; set; }
+        [Display(Name = "Employee Comments")]
+        [MaxLength(300)]
+        public string RequestComments { get; set; }
     }
 }
