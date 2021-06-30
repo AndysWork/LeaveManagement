@@ -32,9 +32,20 @@ namespace LeaveManagement
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
+            if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Production")
+            {
+                services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("AzureConnection")));
+            }
+            else
+            {
+                services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
+            }
+
+            services.BuildServiceProvider().GetService<ApplicationDbContext>().Database.Migrate();
 
             // References for interfaces and the child classes          
             services.AddTransient<IUnitOfWork, UnitOfWork>();
